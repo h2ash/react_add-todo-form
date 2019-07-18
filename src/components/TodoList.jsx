@@ -1,7 +1,7 @@
 import React from 'react'
 import TodoItem from './TodoItem'
 
-const TodoList = ({todos}) => (
+const TodoList = ({updatedTodos}) => (
     <table>
       <thead>
         <tr>
@@ -13,7 +13,7 @@ const TodoList = ({todos}) => (
       </thead>
       <tbody>
       {
-        todos.map(todo => (
+        updatedTodos.map(todo => (
           <TodoItem 
             todoItem={todo}
           />
