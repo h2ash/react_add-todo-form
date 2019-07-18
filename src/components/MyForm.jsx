@@ -1,11 +1,14 @@
 import React from 'react'
 import TodoList from './TodoList'
 
+import users from '../api/users';
+
 class MyForm extends React.Component {
   state = {
     updatedTodos: this.props.todos,
     title: '',
     completed: false,
+    userName: '',
   }
 
   handleInput = (event) => {
@@ -17,14 +20,14 @@ class MyForm extends React.Component {
 
   handleSumbit = (event) => {
     event.preventDefault();
-    const {title, completed} = this.state;
+    const {title, completed, userName} = this.state;
     this.setState(prevState => ({
       updatedTodos: prevState.updatedTodos.concat({
         id: prevState.updatedTodos.length + 1,
         title: title,
         completed: completed,
         user: {
-          name: 'Dima',
+          name: userName,
         }
       })
     }))
@@ -34,27 +37,46 @@ class MyForm extends React.Component {
   render() {
     return (
       <>
-        <h5>Add new todo</h5>
-
+        <TodoList
+          updatedTodos={this.state.updatedTodos}  
+        />
+        <span>Add new todo</span>
+        
         <form onSubmit={this.handleSumbit}>
-          <label htmlFor="">Title:
+            {/* <input 
+              name='completed'
+              type="checkbox"
+              onChange={this.handleInput}/> */}
+
+          <label>Title:
             <input 
               name='title'
               value={this.state.title} 
               onChange={this.handleInput} 
-              type="text"/>
+              type="text"
+              placeholder='Put the text'/>
           </label>
 
-          <input 
-            name='completed'
-            type="checkbox"
-            onChange={this.handleInput}/>
+          <label>
+            User:
+            <select 
+              name="userName" 
+              value={this.state.userName}
+              onChange={this.handleInput}
+              >
+                <option value="" selected disabled hidden>Choose the user</option>
+                {
+                  users.map(user => (
+                    <option value={user.name}>
+                      {user.name}
+                    </option>
+                  ))
+                }
+            </select>
+          </label>
 
           <button type='submit'>Add</button>
         </form>
-        <TodoList
-          updatedTodos={this.state.updatedTodos}  
-        />
       </>
     )
   }
