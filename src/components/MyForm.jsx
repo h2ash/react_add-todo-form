@@ -29,10 +29,11 @@ class MyForm extends React.Component {
         user: {
           name: userName,
         }
-      })
+      }),
+      title: '',
+      completed: false,
     }))
   }
-
 
   render() {
     return (
@@ -43,10 +44,12 @@ class MyForm extends React.Component {
         <span>Add new todo</span>
         
         <form onSubmit={this.handleSumbit}>
-            {/* <input 
+            <input 
               name='completed'
               type="checkbox"
-              onChange={this.handleInput}/> */}
+              onChange={this.handleInput}
+              checked={this.state.completed}
+            />
 
           <label>Title:
             <input 
@@ -64,7 +67,9 @@ class MyForm extends React.Component {
               value={this.state.userName}
               onChange={this.handleInput}
               >
-                <option value="" selected disabled hidden>Choose the user</option>
+                <option value="" selected disabled hidden>
+                  Choose the user
+                </option>
                 {
                   users.map(user => (
                     <option value={user.name}>
