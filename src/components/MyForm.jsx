@@ -32,6 +32,7 @@ class MyForm extends React.Component {
       }),
       title: '',
       completed: false,
+      userName: '',
     }))
   }
 
