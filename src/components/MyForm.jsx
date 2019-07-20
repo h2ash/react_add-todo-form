@@ -17,9 +17,20 @@ class MyForm extends React.Component {
 
   handleInput = (event) => {
     const {name, value, checked, type} = event.target;
+    const {errors} = this.state;
 
     this.setState({
       [name]: (type === 'checkbox') ? checked : value,
+    })
+
+    this.setState(prevState => {
+      if (prevState.title) {
+        errors.title = ''
+      }
+
+      if (prevState.userName) {
+        errors.userName = ''
+      }
     })
   }
 
