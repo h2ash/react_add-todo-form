@@ -11,6 +11,7 @@ class MyForm extends React.Component {
     userName: '',
 
     errors: {
+      title: '',
       userName: '',
     }
   }
@@ -64,13 +65,13 @@ class MyForm extends React.Component {
           }
         }),
       }))
-    }
 
-    this.setState({
-      title: '',
-      completed: false,
-      userName: '',
-    })
+      this.setState({
+        title: '',
+        completed: false,
+        userName: '',
+      })
+    }
   }
 
   render() {
