@@ -29,6 +29,10 @@ class MyForm extends React.Component {
 
     const errors = {};
     this.setState(prevState => {
+      if (!prevState.title) {
+        errors.title = 'Please enter the title'
+      }
+
       if (!prevState.userName) {
         errors.userName = 'Please choose a user'
       }
@@ -38,17 +42,18 @@ class MyForm extends React.Component {
       }
     })
 
-    this.setState(prevState => ({
-      updatedTodos: prevState.updatedTodos.concat({
-        id: prevState.updatedTodos.length + 1,
-        title: title,
-        completed: completed,
-        user: {
-          name: userName,
-        }
-      }),
-    }))
-
+    if (this.state.title && this.state.userName) {
+      this.setState(prevState => ({
+        updatedTodos: prevState.updatedTodos.concat({
+          id: prevState.updatedTodos.length + 1,
+          title: title,
+          completed: completed,
+          user: {
+            name: userName,
+          }
+        }),
+      }))
+    }
 
     this.setState({
       title: '',
@@ -82,6 +87,11 @@ class MyForm extends React.Component {
               type="text"
               placeholder='Put the text'/>
           </label>
+          {this.state.errors.title && (
+            <div className='errors'>
+              {this.state.errors.title}
+            </div>
+          )}
 
           <label>
             User:
@@ -103,7 +113,7 @@ class MyForm extends React.Component {
             </select>
           </label>
           {this.state.errors.userName && (
-            <div style={{color: 'red'}}>
+            <div className='errors'>
               {this.state.errors.userName}
             </div>
           )}
