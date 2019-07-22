@@ -78,60 +78,58 @@ class MyForm extends React.Component {
     const {updatedTodos, completed, title, userName} = this.state;
     return (
       <>
+      
+      <div className='add-form'>
+          <h2 className='add-form__title'>Add new task</h2>
+          
+          <form onSubmit={this.handleSumbit}>
+
+            <label className='add-form__enter'>
+              <input 
+                name='title'
+                value={title} 
+                onChange={this.handleInput} 
+                type="text"
+                placeholder='Enter new task'/>
+              {this.state.errors.title && (
+                <div className='errors'>
+                  {this.state.errors.title}
+                </div>
+              )}
+            </label>
+
+
+            <label className='add-form__enter'>
+              <select 
+                name="userName" 
+                value={userName}
+                onChange={this.handleInput}
+                >
+                  <option value="" selected disabled hidden>
+                    Choose the user
+                  </option>
+                  {
+                    users.map(user => (
+                      <option value={user.name}>
+                        {user.name}
+                      </option>
+                    ))
+                  }
+              </select>
+              {this.state.errors.userName && (
+              <div className='errors'>
+                {this.state.errors.userName}
+              </div>
+              )}
+            </label>
+
+  
+            <button className='add-form__button' type='submit'>Add</button>
+          </form>
+        </div>
         <TodoList
           updatedTodos={updatedTodos}  
         />
-        <span>Add new todo</span>
-        
-        <form onSubmit={this.handleSumbit}>
-            <input 
-              name='completed'
-              type="checkbox"
-              onChange={this.handleInput}
-              checked={completed}
-            />
-
-          <label>Title:
-            <input 
-              name='title'
-              value={title} 
-              onChange={this.handleInput} 
-              type="text"
-              placeholder='Put the text'/>
-          </label>
-          {this.state.errors.title && (
-            <div className='errors'>
-              {this.state.errors.title}
-            </div>
-          )}
-
-          <label>
-            User:
-            <select 
-              name="userName" 
-              value={userName}
-              onChange={this.handleInput}
-              >
-                <option value="" selected disabled hidden>
-                  Choose the user
-                </option>
-                {
-                  users.map(user => (
-                    <option value={user.name}>
-                      {user.name}
-                    </option>
-                  ))
-                }
-            </select>
-          </label>
-          {this.state.errors.userName && (
-            <div className='errors'>
-              {this.state.errors.userName}
-            </div>
-          )}
-
-          <button type='submit'>Add</button>
-        </form>
       </>
     )
   }

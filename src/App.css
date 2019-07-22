@@ -1,7 +1,43 @@
 .App {
   text-align: center;
+  font-family: Roboto, sans-serif;;
+}
+
+.main-title {
+  color: #4c75a3;
+}
+
+.table {
+  display: grid;
+  grid-template-columns: 600px;
+  justify-content: center;
+}
+
+.add-form {
+  display: grid;
+  grid-template-columns: 600px;
+  grid-template-rows: 3fr;
+  justify-content: center;
+}
+
+.add-form__enter {
+  display: grid;
+  justify-content: center;
+  justify-items: start;
+  /* grid-template */
+  grid-template-rows: 1fr;
+  margin: 10px 0;
+}
+
+.add-form__title {
+  font-size: 16px;
+}
+
+.add-form__button {
+  margin: 10px 0;
 }
 
 .errors {
   color: red;
+  font-size: 12px;
 }

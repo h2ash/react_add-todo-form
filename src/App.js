@@ -20,8 +20,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Add todo form</h1>
+      <div className='App'>
+        <h1 className='main-title'>Add task form</h1>
         <MyForm 
           todos={this.state.todos}
         />
